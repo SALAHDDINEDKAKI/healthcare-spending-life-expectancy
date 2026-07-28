@@ -8,7 +8,7 @@
 
 ## The Question
 
-The United States spends more per person on healthcare than any other country on Earth — and still doesn't have the longest life expectancy. This project digs into why, using two decades of global data to find out whether spending more actually buys a longer life, and where the relationship breaks down.
+The United States spends more per person on healthcare than any other country on Earth and still doesn't have the longest life expectancy. This project digs into why, using two decades of global data to find out whether spending more actually buys a longer life, and where the relationship breaks down.
 
 ## Data
 
