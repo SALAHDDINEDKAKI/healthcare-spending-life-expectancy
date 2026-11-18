@@ -1,6 +1,6 @@
 # Does Healthcare Spending Buy Longer Life?
 
-**A data story exploring the relationship between healthcare spending and life expectancy across 193 countries — and the outliers that break the pattern.**
+**A data story exploring the relationship between healthcare spending and life expectancy across 193 countries, and the outliers that break the pattern.**
 
 ![Diminishing returns chart](images/diminishing_returns.png)
 
@@ -22,10 +22,10 @@ The United States spends more per person on healthcare than any other country on
 
 ## Methodology
 
-1. **Clean** — dropped rows missing either variable, removed regional aggregates (e.g. "World", "Europe"), and filtered out implausible data artifacts (`src/clean.py`)
-2. **Explore** — checked year-over-year country coverage and summary statistics to choose a reliable snapshot year (`src/explore.py`)
-3. **Visualize** — built a cross-country scatter plot (log-scaled spending) and a multi-country time trend (`src/visualize.py`)
-4. **Quantify** — fit a linear regression on log-transformed spending to test for a diminishing-returns pattern (`src/analyze.py`)
+1. **Clean**: dropped rows missing either variable, removed regional aggregates (e.g. "World", "Europe"), and filtered out implausible data artifacts (`src/01_clean.py`)
+2. **Explore**: checked year-over-year country coverage and summary statistics to choose a reliable snapshot year (`src/02_explore.py`)
+3. **Visualize**: built a cross-country scatter plot (log-scaled spending) and a multi-country time trend (`src/03_visualize.py`)
+4. **Quantify**: fit a linear regression on log-transformed spending to test for a diminishing-returns pattern (`src/04_analyze.py`)
 
 ## Key Findings
 
@@ -33,10 +33,10 @@ The United States spends more per person on healthcare than any other country on
 Across 193 countries in 2019, the overall correlation is **r = 0.655**.
 
 **2. Diminishing returns are real and measurable.**
-A regression on log-transformed spending explains **69% of the variation** in life expectancy (R² = 0.693, p < 0.001). Each 10x increase in healthcare spending is associated with roughly **11 additional years** of life expectancy on average — but the biggest gains happen at the low end of spending, and returns shrink sharply once a country crosses a few thousand dollars per person.
+A regression on log-transformed spending explains **69% of the variation** in life expectancy (R² = 0.693, p < 0.001). Each 10x increase in healthcare spending is associated with roughly **11 additional years** of life expectancy on average, but the biggest gains happen at the low end of spending, and returns shrink sharply once a country crosses a few thousand dollars per person.
 
 **3. The United States is the clearest outlier.**
-Despite spending far more per capita than any other country, the US trails peer nations like Germany, Japan, and the UK in life expectancy — and that gap has widened, not narrowed, over the 2000–2023 period.
+Despite spending far more per capita than any other country, the US trails peer nations like Germany, Japan, and the UK in life expectancy, and that gap has widened, not narrowed, over the 2000–2023 period.
 
 ## Takeaway
 
@@ -47,7 +47,7 @@ Money matters most where there's little of it. Past a certain point, *how* a cou
 | Chart | Description |
 |---|---|
 | `images/spending_vs_life_expectancy_2019.png` | Cross-country scatter, 2019, with the US highlighted |
-| `images/life_expectancy_trend.png` | Life expectancy over time — US vs. Germany, Japan, UK |
+| `images/life_expectancy_trend.png` | Life expectancy over time, US vs. Germany, Japan, UK |
 | `images/diminishing_returns.png` | Scatter with fitted regression line on log-scaled spending |
 
 ## Project Structure
@@ -58,13 +58,13 @@ healthcare-spending-life-expectancy/
 ├── requirements.txt
 ├── .gitignore
 ├── data/
-│   └── raw/                # source CSV from Our World in Data
+│   └── raw/                   # source CSV from 'Our World in Data'
 ├── src/
-│   ├── clean.py            # load, rename, filter, deduplicate
-│   ├── explore.py          # coverage checks, summary stats, correlation
-│   ├── visualize.py        # scatter plot + time trend
-│   └── analyze.py          # regression + diminishing-returns chart
-└── images/                 # exported chart PNGs
+│   ├── 01_clean.py            # load, rename, filter, deduplicate
+│   ├── 02_explore.py          # coverage checks, summary stats, correlation
+│   ├── 03_visualize.py        # scatter plot, time trend
+│   └── 04_analyze.py          # regression, diminishing-returns chart
+└── images/                    # exported chart PNGs
 ```
 
 ## How to Run
@@ -75,22 +75,32 @@ git clone https://github.com/SALAHDDINEDKAKI/healthcare-spending-life-expectancy
 cd healthcare-spending-life-expectancy
 
 # set up the environment
+**Windows (Command Prompt or PowerShell)**
+
+bash
 python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
+.venv\Scripts\activate
+
+
+**macOS / Linux**
+
+bash
+python3 -m venv .venv
+source .venv/bin/activate
 
 # install dependencies
 pip install -r requirements.txt
 
 # run the pipeline
-python src/clean.py
-python src/visualize.py
-python src/analyze.py
-Python src/explore.py
+python src/01_clean.py
+python src/02_visualize.py
+python src/03_analyze.py
+python src/04_explore.py
 ```
 
 ## Limitations
 
-- Correlation is not causation — spending is one of many factors (diet, sanitation, healthcare system design, inequality) that shape life expectancy.
+- Correlation is not causation, spending is one of many factors (diet, sanitation, healthcare system design, inequality) that shape life expectancy.
 - PPP-adjusted spending accounts for cost-of-living differences but not healthcare system efficiency or quality of care.
 - The 2019 snapshot avoids COVID-era distortion, but a full pandemic-era comparison is a natural next step.
 
