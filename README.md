@@ -1,4 +1,4 @@
-# Does Healthcare Spending Buy Longer Life?
+# Does yyyyyHealthcare Spending Buy Longer Life?
 
 **An analysis of how healthcare spending relates to life expectancy across 193 countries (2000–2023), testing for diminishing returns and examining the United States as a high-spending outlier.**
 
